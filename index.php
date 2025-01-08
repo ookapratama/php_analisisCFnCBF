@@ -1,8 +1,8 @@
 <?php
-    session_start();    
-    include 'koneksi.php';
-    include 'protect.php';
-    error_reporting(0);
+session_start();
+include 'koneksi.php';
+include 'protect.php';
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <meta name="keywords" content="">
 
     <title>
-        E-Del : Information Delivery Order Tel-U
+        KumoArt : UMKM Rajut
     </title>
 
     <meta name="keywords" content="">
@@ -45,25 +45,25 @@
 
     <!-- *** TOPBAR ***
  _________________________________________________________ -->
- <div id="top">
-    <div class="container">
-        <div class="col-md-6" data-animate="fadeInDown">
-            <ul class="menu">
-                <li><a href="profile.php">Welcome, <?php echo $_SESSION['login']['nama_pelanggan']; ?></a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
+    <div id="top">
+        <div class="container">
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li><a href="profile.php">Welcome, <?php echo $_SESSION['login']['nama_pelanggan']; ?></a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- *** TOP BAR END *** -->
 
     <!-- *** NAVBAR ***
  _________________________________________________________ -->
 
- <div class="navbar navbar-default yamm" role="navigation" id="navbar">
-    <div class="container">
-        <div class="navbar-header">
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
 
                 <a class="navbar-brand home" href="index.php" data-animate-hover="bounce">
                     <img src="logo.png" class="hidden-xs">
@@ -95,214 +95,211 @@
             <!--/.nav-collapse -->
 
             <div class="navbar-buttons">
-                <?php                     
-                    if (!$_SESSION['keranjang']) {
-                    ?>
-                        <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja</span></a>
-                        </div>
-                    <?php        
-                    }
-                    else{
+                <?php
+                if (!$_SESSION['keranjang']) {
+                ?>
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja</span></a>
+                    </div>
+                <?php
+                } else {
                     $item = count($_SESSION['keranjang']);
-                    ?>
-                        <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja (<?php echo $item;?>)</span></a>
-                        </div>
-                    <?php
-                    }
+                ?>
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja (<?php echo $item; ?>)</span></a>
+                    </div>
+                <?php
+                }
                 ?>
             </div>
-     </div>
-     <!-- /.container -->
- </div>
- <!-- /#navbar -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#navbar -->
 
- <!-- *** NAVBAR END *** -->
+    <!-- *** NAVBAR END *** -->
 
 
 
- <div id="all">
+    <div id="all">
 
-    <div id="content">
+        <div id="content">
 
-        <div class="container">
-            <div class="col-md-12">
-                <div id="main-slider">
-                    <?php 
-                    $q_slider=$conn->query("SELECT * FROM produk ORDER BY RAND() LIMIT 5");
-                    while ($slider=$q_slider->fetch_assoc()) {
-                        ?>
-                        <div class="item">
-                            <img src="foto_produk/<?php echo $slider['foto_produk']; ?>" style="height:553px;width:1200px;" class="img-responsive">
-                        </div>
+            <div class="container">
+                <div class="col-md-12">
+                    <div id="main-slider">
                         <?php
-                    }
-                    ?>  
+                        $q_slider = $conn->query("SELECT * FROM produk ORDER BY RAND() LIMIT 5");
+                        while ($slider = $q_slider->fetch_assoc()) {
+                        ?>
+                            <div class="item">
+                                <img src="foto_produk/<?php echo $slider['foto_produk']; ?>" style="height:553px;width:1200px;" class="img-responsive">
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <!-- /#main-slider -->
                 </div>
-                <!-- /#main-slider -->
             </div>
-        </div>
 
-<!-- *** ADVANTAGES HOMEPAGE ***
+            <!-- *** ADVANTAGES HOMEPAGE ***
 _________________________________________________________ -->
-<div id="advantages">
+            <div id="advantages">
 
-    <div class="container">
-        <div class="same-height-row">
-            <div class="col-sm-4">
-                <div class="box same-height">
-                    <div class="icon"><i class="fa fa-star"></i>
-                    </div>
-                    <h3>Rating</h3>
-                    <p>Berikan bintang kepada makanan yang kamu sukai</p>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="box same-height">
-                    <div class="icon"><i class="fa fa-map-marker"></i>
-                    </div>
-                    <h3>Special for Telkom University</h3>
-                    <p>Aplikasi ini di khususkan untuk informasi delivery makanan di kawasan Telkom University.</p>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="box same-height">
-                    <div class="icon"><i class="fa fa-thumbs-up"></i>
-                    </div>
-                    <h3>Informasi Lengkap</h3>
-                    <p>Aplikasi ini akan memberikan informasi lengkap mengenai menu makanan di warung-warung area Telkom University</p>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
-    <!-- /.container -->
-
-</div>
-<!-- /#advantages -->
-
-<!-- *** ADVANTAGES END *** -->
-
-<!-- *** HOT PRODUCT SLIDESHOW ***
-_________________________________________________________ -->
-<div id="hot">
-
-    <div class="box">
-        <div class="container">
-            <div class="col-md-12">
-                <h2>Menu Favorit</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="product-slider">
-            <?php  
-            $query=$conn->query("SELECT*FROM produk ORDER BY likes DESC");
-            while ($data=$query->fetch_assoc()) {
-                ?>
-                <div class="item">
-                    <div class="product">
-                        <div class="flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                                    <a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>">
-                                        <img src="foto_produk/<?php echo $data['foto_produk'];?>" alt="" class="img-responsive">
-                                    </a>
+                <div class="container">
+                    <div class="same-height-row">
+                        <div class="col-sm-4">
+                            <div class="box same-height">
+                                <div class="icon"><i class="fa fa-star"></i>
                                 </div>
-                                <div class="back">
-                                    <a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>">
-                                        <img src="foto_produk/<?php echo $data['foto_produk'];?>" alt="" class="img-responsive">
-                                    </a>
-                                </div>
+                                <h3>Rating</h3>
+                                <p>Berikan bintang kepada makanan yang kamu sukai</p>
                             </div>
                         </div>
-                        <a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>" class="invisible">
-                            <img src="foto_produk/<?php echo $data['foto_produk'];?>" alt="" class="img-responsive">
-                        </a>
-                        <div class="text">
-                            <h3><a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>"><?php echo $data['nama_produk']; ?></a></h3>
-                            <p class="price">Rp.<?php echo number_format($data['harga_produk']); ?></p>
+
+                        <div class="col-sm-4">
+                            <div class="box same-height">
+                                <div class="icon"><i class="fa fa-map-marker"></i></div>
+                                <h3>KumoArt Craft</h3>
+                                <p>Aplikasi ini di khususkan untuk UMKM yang fokus di bidang kerajinan tangan </p>
+                            </div>
                         </div>
-                        <!-- /.text -->
+
+                        <div class="col-sm-4">
+                            <div class="box same-height">
+                                <div class="icon"><i class="fa fa-thumbs-up"></i></div>
+                                <h3>Informasi Lengkap</h3>
+                                <p>Aplikasi ini akan memberikan informasi lengkap mengenai produk yang telah dibuat dari berbagai UMKM</p>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.product -->
+                    <!-- /.row -->
+
                 </div>
-                <?php
-            }
-            ?>
+                <!-- /.container -->
+
+            </div>
+            <!-- /#advantages -->
+
+            <!-- *** ADVANTAGES END *** -->
+
+            <!-- *** HOT PRODUCT SLIDESHOW ***
+_________________________________________________________ -->
+            <div id="hot">
+
+                <div class="box">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <h2>Menu Favorit</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="product-slider">
+                        <?php
+                        $query = $conn->query("SELECT*FROM produk ORDER BY likes DESC");
+                        while ($data = $query->fetch_assoc()) {
+                        ?>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>">
+                                                    <img src="foto_produk/<?php echo $data['foto_produk']; ?>" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>">
+                                                    <img src="foto_produk/<?php echo $data['foto_produk']; ?>" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>" class="invisible">
+                                        <img src="foto_produk/<?php echo $data['foto_produk']; ?>" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail_produk.php?id=<?php echo $data['id_produk']; ?>"><?php echo $data['nama_produk']; ?></a></h3>
+                                        <p class="price">Rp.<?php echo number_format($data['harga_produk']); ?></p>
+                                    </div>
+                                    <!-- /.text -->
+                                </div>
+                                <!-- /.product -->
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <!-- /.product-slider -->
+                </div>
+                <!-- /.container -->
+
+            </div>
+            <!-- /#hot -->
+
+            <!-- *** HOT END *** -->
+
+            <div class="box text-center" data-animate="fadeInUp">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h3 class="text-uppercase"> Kami bekerja sama dengan banyak UMKM. </h3>
+
+                        <p class="lead">Penasaran dengan UMKM lainnya? <a href="warung.php">Check our Store!</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="col-md-12" data-animate="fadeInUp">
+
+                </div>
+
+            </div>
+            <!-- /#blog-homepage -->
         </div>
-        <!-- /.product-slider -->
     </div>
     <!-- /.container -->
 
-</div>
-<!-- /#hot -->
+    <!-- *** BLOG HOMEPAGE END *** -->
 
-<!-- *** HOT END *** -->
-
-<div class="box text-center" data-animate="fadeInUp">
-    <div class="container">
-        <div class="col-md-12">
-            <h3 class="text-uppercase"> E-Del bekerja sama dengan banyak warung. </h3>
-
-            <p class="lead">Penasaran dengan warung-warung kami? <a href="warung.php">Check our Store!</a>
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-
-    <div class="col-md-12" data-animate="fadeInUp">
 
     </div>
+    <!-- /#content -->
 
-</div>
-<!-- /#blog-homepage -->
-</div>
-</div>
-<!-- /.container -->
-
-<!-- *** BLOG HOMEPAGE END *** -->
-
-
-</div>
-<!-- /#content -->
-
-        <!-- *** COPYRIGHT ***
+    <!-- *** COPYRIGHT ***
  _________________________________________________________ -->
- <div id="copyright">
-    <div class="container">
-        <div class="col-md-6">
-            <p class="pull-left">© E-DEL 2018</p>
-        </div>
-        <div class="col-md-6">
-            <p class="pull-right">Alright Reserved by 11Fingers
-            </p>
+    <div id="copyright">
+        <div class="container">
+            <div class="col-md-6">
+                <p class="pull-left">© KumoArt 2024</p>
+            </div>
+            <div class="col-md-6">
+                <p class="pull-right">Alright Reserved by 11Fingers
+                </p>
+            </div>
         </div>
     </div>
-</div>
-<!-- *** COPYRIGHT END *** -->
+    <!-- *** COPYRIGHT END *** -->
 
-</div>
-<!-- /#all -->
-    
+    </div>
+    <!-- /#all -->
+
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
- <script src="asset/js/jquery-1.11.0.min.js"></script>
- <script src="asset/js/bootstrap.min.js"></script>
- <script src="asset/js/jquery.cookie.js"></script>
- <script src="asset/js/waypoints.min.js"></script>
- <script src="asset/js/modernizr.js"></script>
- <script src="asset/js/bootstrap-hover-dropdown.js"></script>
- <script src="asset/js/owl.carousel.min.js"></script>
- <script src="asset/js/front.js"></script>
+    <script src="asset/js/jquery-1.11.0.min.js"></script>
+    <script src="asset/js/bootstrap.min.js"></script>
+    <script src="asset/js/jquery.cookie.js"></script>
+    <script src="asset/js/waypoints.min.js"></script>
+    <script src="asset/js/modernizr.js"></script>
+    <script src="asset/js/bootstrap-hover-dropdown.js"></script>
+    <script src="asset/js/owl.carousel.min.js"></script>
+    <script src="asset/js/front.js"></script>
 
 
 </body>

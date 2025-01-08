@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include 'koneksi.php';
@@ -20,7 +20,7 @@ if (!$_SESSION['keranjang']) {
     <meta name="keywords" content="">
 
     <title>
-        E-Del : Information Delivery Order Tel-U
+        KumoArt : UMKM Rajut
     </title>
 
     <meta name="keywords" content="">
@@ -45,26 +45,27 @@ if (!$_SESSION['keranjang']) {
     <link rel="shortcut icon" href="logo.png">
 
     <style>
-        #content{
+        #content {
             margin-bottom: 54px;
         }
 
         #copyright {
-        position: fixed;
-        /*padding: 10px 0;*/
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #333;
-        color: #ccc;
-        font-size: 12px;
-        text-align: center;
+            position: fixed;
+            /*padding: 10px 0;*/
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #ccc;
+            font-size: 12px;
+            text-align: center;
         }
 
         @media (max-width: 991px) {
-            #content{
+            #content {
                 margin-bottom: 54px;
             }
+
             #copyright p {
                 margin-bottom: 0px;
             }
@@ -76,29 +77,29 @@ if (!$_SESSION['keranjang']) {
 <body>
     <!-- *** TOPBAR ***
  _________________________________________________________ -->
- <div id="top">
-    <div class="container">
-        <div class="col-md-6" data-animate="fadeInDown">
-            <ul class="menu">
-                <li><a href="profile.php">Welcome, <?php echo $_SESSION['login']['nama_pelanggan']; ?></a>
-                </li>
-                <li><a href="logout.php">Logout</a>
-                </li>
-            </ul>
+    <div id="top">
+        <div class="container">
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li><a href="profile.php">Welcome, <?php echo $_SESSION['login']['nama_pelanggan']; ?></a>
+                    </li>
+                    <li><a href="logout.php">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- *** TOP BAR END *** -->
 
     <!-- *** NAVBAR ***
  _________________________________________________________ -->
 
- <div class="navbar navbar-default yamm" role="navigation" id="navbar">
-    <div class="container">
-        <div class="navbar-header">
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
 
-               <a class="navbar-brand home" href="index.php" data-animate-hover="bounce">
+                <a class="navbar-brand home" href="index.php" data-animate-hover="bounce">
                     <img src="logo.png" class="hidden-xs">
                     <img src="logo.png" class="visible-xs"><span class="sr-only">E-Del - go to homepage</span>
                 </a>
@@ -108,7 +109,7 @@ if (!$_SESSION['keranjang']) {
                         <i class="fa fa-align-justify"></i>
                     </button>
                     <a class="btn btn-default navbar-toggle" href="cart.php">
-                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"> Keranjang Belanja </span>
+                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs"> Keranjang Belanja </span>
                     </a>
                 </div>
             </div>
@@ -132,22 +133,21 @@ if (!$_SESSION['keranjang']) {
 
             <div class="navbar-buttons">
                 <?php
-                error_reporting(0);                     
-                    if (!$_SESSION['keranjang']) {
-                    ?>
-                        <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja</span></a>
-                        </div>
-                    <?php        
-                    }
-                    else{
+                error_reporting(0);
+                if (!$_SESSION['keranjang']) {
+                ?>
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja</span></a>
+                    </div>
+                <?php
+                } else {
                     $item = count($_SESSION['keranjang']);
-                    ?>
-                        <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja (<?php echo $item;?>)</span></a>
-                        </div>
-                    <?php
-                    }
+                ?>
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja (<?php echo $item; ?>)</span></a>
+                    </div>
+                <?php
+                }
                 ?>
             </div>
             <!--/.nav-collapse -->
@@ -179,23 +179,23 @@ if (!$_SESSION['keranjang']) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $total=0; ?>
+                                        <?php $total = 0; ?>
                                         <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
-                                            <?php 
+                                            <?php
                                             $query = $conn->query("SELECT * FROM produk WHERE id_produk='$id_produk'");
-                                            $data=$query->fetch_assoc();
-                                            $subharga=$data['harga_produk']*$jumlah;
+                                            $data = $query->fetch_assoc();
+                                            $subharga = $data['harga_produk'] * $jumlah;
                                             ?>
                                             <tr>
                                                 <td><img src="foto_produk/<?php echo $data['foto_produk']; ?>" alt=""></td>
                                                 <td><?php echo $data['nama_produk']; ?></td>
-                                                <td><?php echo $jumlah;?></td>
-                                                <td>Rp.<?php echo number_format($data['harga_produk']);?></td>
+                                                <td><?php echo $jumlah; ?></td>
+                                                <td>Rp.<?php echo number_format($data['harga_produk']); ?></td>
                                                 <td>Rp.<?php echo number_format($subharga); ?></td>
                                                 <td><a href="hapuskeranjang.php?id=<?php echo $id_produk ?>"><i class="fa fa-trash-o"></i>Hapus</a>
                                                 </td>
                                             </tr>
-                                            <?php $total+=$subharga; ?>
+                                            <?php $total += $subharga; ?>
                                         <?php endforeach ?>
                                     </tbody>
                                     <tfoot>
@@ -216,18 +216,16 @@ if (!$_SESSION['keranjang']) {
                                 <div class="pull-right">
                                     <button type="submit" class="btn btn-primary" name="checkout">Proceed to checkout <i class="fa fa-chevron-right"></i>
                                     </button>
-                                    <?php 
-                                        if (isset($_POST['checkout'])) {
-                                            $stok = $data['stok'];
-                                            $stokupdate = $stok - $jumlah;
-                                            if ($stokupdate < 0) {
-                                                echo "<script>alert('Stok tidak memenuhi, periksa kembali jumlah belanjaan anda');</script>";
-
-                                            }
-                                            else{
-                                                echo "<script>location='result.php';</script>";
-                                            }
+                                    <?php
+                                    if (isset($_POST['checkout'])) {
+                                        $stok = $data['stok'];
+                                        $stokupdate = $stok - $jumlah;
+                                        if ($stokupdate < 0) {
+                                            echo "<script>alert('Stok tidak memenuhi, periksa kembali jumlah belanjaan anda');</script>";
+                                        } else {
+                                            echo "<script>location='result.php';</script>";
                                         }
+                                    }
                                     ?>
                                 </div>
                             </div>
@@ -248,37 +246,37 @@ if (!$_SESSION['keranjang']) {
 
         <!-- *** COPYRIGHT ***
  _________________________________________________________ -->
- <div id="copyright">
-    <div class="container">
-        <div class="col-md-6">
-            <p class="pull-left">© E-DEL 2018</p>
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© KumoArt 2024</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">Alright Reserved by 11Fingers
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <p class="pull-right">Alright Reserved by 11Fingers
-            </p>
-        </div>
+        <!-- *** COPYRIGHT END *** -->
+
+
+
     </div>
-</div>
-<!-- *** COPYRIGHT END *** -->
+    <!-- /#all -->
 
 
 
-</div>
-<!-- /#all -->
-
-
-    
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
- <script src="asset/js/jquery-1.11.0.min.js"></script>
- <script src="asset/js/bootstrap.min.js"></script>
- <script src="asset/js/jquery.cookie.js"></script>
- <script src="asset/js/waypoints.min.js"></script>
- <script src="asset/js/modernizr.js"></script>
- <script src="asset/js/bootstrap-hover-dropdown.js"></script>
- <script src="asset/js/owl.carousel.min.js"></script>
- <script src="asset/js/front.js"></script>
+    <script src="asset/js/jquery-1.11.0.min.js"></script>
+    <script src="asset/js/bootstrap.min.js"></script>
+    <script src="asset/js/jquery.cookie.js"></script>
+    <script src="asset/js/waypoints.min.js"></script>
+    <script src="asset/js/modernizr.js"></script>
+    <script src="asset/js/bootstrap-hover-dropdown.js"></script>
+    <script src="asset/js/owl.carousel.min.js"></script>
+    <script src="asset/js/front.js"></script>
 
 
 

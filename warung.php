@@ -1,8 +1,8 @@
 <?php
-    session_start(); 
-    include 'koneksi.php';
-    include 'protect.php';
-    error_reporting(0); 
+session_start();
+include 'koneksi.php';
+include 'protect.php';
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <meta name="keywords" content="">
 
     <title>
-        E-Del : Information Delivery Order Tel-U
+        KumoArt : UMKM Rajut
     </title>
 
     <meta name="keywords" content="">
@@ -78,7 +78,7 @@
                         <i class="fa fa-align-justify"></i>
                     </button>
                     <a class="btn btn-default navbar-toggle" href="cart.php">
-                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">Keranjang Belanja</span>
+                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Keranjang Belanja</span>
                     </a>
                 </div>
             </div>
@@ -102,22 +102,21 @@
 
             <div class="navbar-buttons">
                 <?php
-                error_reporting(0);                     
-                    if (!$_SESSION['keranjang']) {
-                    ?>
-                        <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja</span></a>
-                        </div>
-                    <?php        
-                    }
-                    else{
+                error_reporting(0);
+                if (!$_SESSION['keranjang']) {
+                ?>
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja</span></a>
+                    </div>
+                <?php
+                } else {
                     $item = count($_SESSION['keranjang']);
-                    ?>
-                        <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja (<?php echo $item;?>)</span></a>
-                        </div>
-                    <?php
-                    }
+                ?>
+                    <div class="navbar-collapse collapse right" id="basket-overview">
+                        <a href="cart.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">Keranjang Belanja (<?php echo $item; ?>)</span></a>
+                    </div>
+                <?php
+                }
                 ?>
             </div>
 
@@ -138,20 +137,20 @@
                     <!-- *** MENUS AND FILTERS ***-->
                     <div class="panel panel-default sidebar-menu">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Warung</h3>
+                            <h3 class="panel-title">Daftar UMKM</h3>
                         </div>
 
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
-                                <?php 
-                                $query=$conn->query("SELECT * FROM warung");
+                                <?php
+                                $query = $conn->query("SELECT * FROM warung");
 
-                                while ($data=$query->fetch_assoc()) {
-                                    ?>
-                                <li>
-                                    <a href="warung.php?id=<?php echo $data['id_warung']; ?>"><?php echo $data['nama_warung']; ?></a>
-                                </li>
-                                    <?php
+                                while ($data = $query->fetch_assoc()) {
+                                ?>
+                                    <li>
+                                        <a href="warung.php?id=<?php echo $data['id_warung']; ?>"><?php echo $data['nama_warung']; ?></a>
+                                    </li>
+                                <?php
                                 }
                                 ?>
                             </ul>
@@ -162,21 +161,21 @@
                 <div class="col-md-9">
                     <div class="box">
                         <h2>Warung Pilihan :</h2>
-                        <?php 
-                        $id_warung=$_GET['id'];
-                        $query2=$conn->query("SELECT * FROM warung WHERE id_warung=$id_warung");
-                        $data2=$query2->fetch_assoc();
+                        <?php
+                        $id_warung = $_GET['id'];
+                        $query2 = $conn->query("SELECT * FROM warung WHERE id_warung=$id_warung");
+                        $data2 = $query2->fetch_assoc();
                         ?>
                         <h1><?php echo $data2['nama_warung']; ?></h1>
                         <p><?php echo $data2['alamat_warung']; ?> <br>
                             <?php echo $data2['telepon_warung']; ?></p>
-                        </div>
+                    </div>
                     <div class="row products">
                         <?php
-                        $id_warung=$_GET['id'];  
-                        $query3=$conn->query("SELECT * FROM produk WHERE id_warung=$id_warung");
-                        while ($data3=$query3->fetch_assoc()) {
-                            ?>
+                        $id_warung = $_GET['id'];
+                        $query3 = $conn->query("SELECT * FROM produk WHERE id_warung=$id_warung");
+                        while ($data3 = $query3->fetch_assoc()) {
+                        ?>
                             <div class="col-md-4 col-sm-6">
                                 <div class="product">
                                     <div class="flip-container">
@@ -209,8 +208,8 @@
                                 </div>
                                 <!-- /.product -->
                             </div>
-                                <?php
-                            }
+                        <?php
+                        }
                         ?>
                     </div>
                     <!-- /.products -->
@@ -223,23 +222,23 @@
 
         <!-- *** COPYRIGHT ***
  _________________________________________________________ -->
- <div id="copyright">
-    <div class="container">
-        <div class="col-md-6">
-            <p class="pull-left">© E-DEL 2018</p>
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© KumoArt 2024</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">Alright Reserved by 11Fingers
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <p class="pull-right">Alright Reserved by 11Fingers
-            </p>
-        </div>
+        <!-- *** COPYRIGHT END *** -->
     </div>
-</div>
-<!-- *** COPYRIGHT END *** -->
-</div>
-<!-- /#all -->
+    <!-- /#all -->
 
 
-    
+
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
@@ -253,4 +252,5 @@
     <script src="asset/js/front.js"></script>
 
 </body>
+
 </html>
